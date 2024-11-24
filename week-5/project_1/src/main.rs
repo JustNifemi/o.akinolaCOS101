@@ -14,10 +14,6 @@ fn main() {
 // price input
     let mut input1 = String::new();
     let mut input2 = String::new();
-    let mut input3 = String::new();
-    let mut input4 = String::new();
-    let mut input5 = String::new();
-    let mut input6 = String::new();
 
     println!("Please type in your order from the menu above (P/F/A/E/W)");
     io::stdin().read_line(&mut input1).expect("Not a valid String");
@@ -27,22 +23,30 @@ fn main() {
     io::stdin().read_line(&mut input2).expect("Not a valid string");
     let quan:i32 = input2.trim().parse().expect("Not a valid number");
 
+let mut tot_price = 0000 * quan;
 
 if order == "P" {
-    let tot_price = 3200 * quan;
+     tot_price = 3200 * quan;
+     println!("Total price: N{}",tot_price );
 } else if order == "F" {
-    let tot_price = 3000 * quan;
+     tot_price = 3000 * quan;
+     println!("Total price: N{}",tot_price );
 } else if order == "A" {
-    let tot_price = 2500 * quan;
+     tot_price = 2500 * quan;
+     println!("Total price: N{}",tot_price );
 } else if order == "E" {
-    let tot_price = 2000 * quan;
+     tot_price = 2000 * quan;
+     println!("Total price: N{}",tot_price );
 }else if order == "W" {
-    let tot_price = 2500 * quan;
-} 
+     tot_price = 2500 * quan;
+     println!("Total price: N{}",tot_price );
+} else{
+
+}
 
 if tot_price > 10000{
-    let fin_price = tot_price * (5/100);
-    println!("Your bill is :N{}",fin_price );
+    let fin_price:f32 = tot_price as f32 * 0.95 ;
+    println!("Your bill (with 5% discount) is :N{}",fin_price );
 } else {
     println!("Your bill is :N{}",tot_price )
 }
