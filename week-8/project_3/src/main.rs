@@ -4,7 +4,7 @@ use std::io;
 
 fn main() {
 
-    println!("Hello!");
+    println!("Welcome to 'The Data Blender'");
     println!("Merging datasets 'Commisioner Names.txt', 'Ministry.txt', 'Geopolitical Zones.txt' into 'Convicted Ministers.txt'");
     println!("Please wait...");
 
@@ -24,12 +24,10 @@ fn main() {
     file3.read_to_string(&mut contents3).unwrap();
 
     //creating a new file & writing the others into it
+    let new_contents = format!("{}{}{}", contents1, contents2, contents3);
 
     let mut new_file = std::fs::File::create("Convicted Ministers.txt").unwrap();
-    new_file.write_all(contents1.as_bytes()).expect("Failed to write");
-    new_file.write_all(contents3.as_bytes()).expect("Failed to write");
-    new_file.write_all(contents2.as_bytes()).expect("Failed to write");
-
+    new_file.write_all(new_contents.as_bytes()).expect("Failed to write");
 
     println!("Process Successful!");
 }

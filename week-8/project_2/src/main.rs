@@ -21,6 +21,8 @@ let num:u32 = num.trim().parse().expect("Failed to read input");
 
 
 // loop for input
+    println!("Note: Please do not use commas (,) while inputing the student's data.");
+
 for x in 0..num{
     println!("Enter student's name:");
     let mut std_name = String::new();
@@ -44,35 +46,26 @@ for x in 0..num{
 
 
     //to push to the vectors
-    student_names.push(std_name + "\n");
-    matric_no.push(std_matric + "\n");
-    department.push(std_dep + "\n");
-    level.push(std_level + "\n")
+    student_names.push(std_name);
+    matric_no.push(std_matric);
+    department.push(std_dep);
+    level.push(std_level);
 
 }
 
 
-    let mut sims_file = std::fs::File::create("PAU-SMIS.csv").expect("create failed");
-    sims_file.write_all("PAU SMIS\n".as_bytes()).expect("Failed to write");
+    let mut smis_file = std::fs::File::create("PAU-SMIS.csv").expect("create failed");
+    smis_file.write_all("PAU SMIS\n".as_bytes()).expect("Failed to write");
 
-    sims_file.write_all("Student Name\n".as_bytes()).expect("Failed to write");
-    for std in student_names{
-        sims_file.write_all(std.as_bytes()).expect("Failed to write");
-    }
+    smis_file.write_all("Student Name,Matric. Number,Department,Level\n".as_bytes()).expect("Failed to write");
 
-    sims_file.write_all("Matric. Number\n".as_bytes()).expect("Failed to write");
-    for mtno in matric_no{
-        sims_file.write_all(mtno.as_bytes()).expect("Failed to write");
-    }
+//wrinting into the csv file
 
-    sims_file.write_all("Department\n".as_bytes()).expect("Failed to write");
-    for dpt in department{
-        sims_file.write_all(dpt.as_bytes()).expect("Failed to write");
-    }
-
-    sims_file.write_all("Level\n".as_bytes()).expect("Failed to write");
-    for lvl in level{
-        sims_file.write_all(lvl.as_bytes()).expect("Failed to write");
+        let mut index = 0;
+    for i in 0..student_names.len(){
+        let file = format!("{},{},{},{}\n", student_names[index], matric_no[index], department[index], level[index]);
+        smis_file.write_all(file.as_bytes()).expect("Failed to write");
+        index+= 1
     }
 
     print!("File created.");
