@@ -1,5 +1,5 @@
-Internal Affairs
-Justice
-Defence
-Power & Steel
-Petroleum
+1. Internal Affairs
+2. Justice
+3. Defence
+4. Power & Steel
+5. Petroleum
